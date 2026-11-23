@@ -1,0 +1,17 @@
+# Despliegue en Render.com (Blueprint). Ver README, sección "Publicar en Internet".
+services:
+  - type: web
+    name: dermavida
+    runtime: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DB_SSL
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES
+        value: 8h
